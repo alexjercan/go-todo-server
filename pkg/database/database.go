@@ -46,13 +46,21 @@ func InsertItem(ctx context.Context, item *models.Item) (*models.Item, error) {
 }
 
 func UpdateItem(ctx context.Context, item *models.Item) (*models.Item, error) {
-	_, err := database.NewUpdate().Model(item).Exec(ctx)
+	_, err := database.NewUpdate().Model(item).Where("id = ?", item.ID).Exec(ctx)
 
 	return item, err
 }
 
 func DeleteItem(ctx context.Context, item *models.Item) (*models.Item, error) {
-	_, err := database.NewDelete().Model(item).Exec(ctx)
+	deleted := new(models.Item)
 
-	return item, err
+	err := database.NewSelect().Model(deleted).Where("id = ?", item.ID).Scan(ctx)
+
+	if err != nil {
+		return nil, err
+	}
+
+	_, err = database.NewDelete().Model(item).Where("id = ?", item.ID).Exec(ctx)
+
+	return deleted, err
 }

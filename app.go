@@ -25,7 +25,7 @@ func main() {
 	})
 
 	app.Get("/api/items", routes.ItemList)
-	// app.Post("/api/items", routes.ItemCreate)
+	app.Post("/api/items", routes.ItemCreate)
 	// app.Put("/api/items", routes.UpdateItem)
 	// app.Delete("/api/items", routes.DeleteItem)
 

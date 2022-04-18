@@ -39,20 +39,20 @@ func GetItems(ctx context.Context) ([]models.Item, error) {
 	return items, err
 }
 
-func InsertItem(ctx context.Context, item models.Item) (models.Item, error) {
-	_, err := database.NewInsert().Model(&item).Exec(ctx)
+func InsertItem(ctx context.Context, item *models.Item) (*models.Item, error) {
+	_, err := database.NewInsert().Model(item).Exec(ctx)
 
 	return item, err
 }
 
-func UpdateItem(ctx context.Context, item models.Item) (models.Item, error) {
-	_, err := database.NewUpdate().Model(&item).Exec(ctx)
+func UpdateItem(ctx context.Context, item *models.Item) (*models.Item, error) {
+	_, err := database.NewUpdate().Model(item).Exec(ctx)
 
 	return item, err
 }
 
-func DeleteItem(ctx context.Context, item models.Item) (models.Item, error) {
-	_, err := database.NewDelete().Model(&item).Exec(ctx)
+func DeleteItem(ctx context.Context, item *models.Item) (*models.Item, error) {
+	_, err := database.NewDelete().Model(item).Exec(ctx)
 
 	return item, err
 }

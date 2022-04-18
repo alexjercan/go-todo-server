@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+
+  server:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_ADDRESS=postgres:5432
+      - DB_USER=user
+      - DB_PASSWORD=password
+      - DB_NAME=postgres
+
+  postgres:
+    image: "postgres"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - .:/docker-entrypoint-initdb.d
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:

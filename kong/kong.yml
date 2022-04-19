@@ -1,0 +1,9 @@
+_format_version: "2.1"
+
+services:
+  - name: items-service_1
+    url: http://server:3000/api/items/
+    routes:
+      - name: items-route_1
+        paths:
+          - /api/items

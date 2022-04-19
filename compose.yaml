@@ -20,6 +20,7 @@ services:
       - 8444:8444
 
   server:
+    image: alexjercan/go-todo-server
     build: .
     ports:
       - "3000:3000"

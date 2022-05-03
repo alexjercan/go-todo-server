@@ -34,7 +34,7 @@
 
 #### Routes
 
-1. `GET /api/items/` 
+1. `GET /api/items/`
     - Get all items in the database.
     - Input: none
     - Output: `[{"ID":number,"Description":string,"Done":boolean},...]`
